@@ -22,16 +22,26 @@ async function obtenerPublicaciones(id) {
      console.error('Error al obtener el usuario:', error.message);
   }
 }
-
+/*
 async function Secuencial() {
   for (let i = 1; i <= 3; i++) {
     const usuario = await obtenerUsuario(i);
-    const publicaciones = await obtenerPublicaciones(i); 
+    const publicaciones = await obtenerPublicaciones(i);
     console.log(`${usuario} tiene ${publicaciones} publicaciones`);
   }
 }
+*/
+async function secuencial() {
+  for (let i = 1; i <= 3; i++) {
+    const usuario = obtenerUsuario(i);
+    const publicaciones = obtenerPublicaciones(i);
 
-async function Concurrente() {
+    const [usuarioRes, publicacionesRes] = await Promise.all([usuario, publicaciones]);
+    console.log(`${usuarioRes} tiene ${publicacionesRes} publicaciones`);
+  }
+}
+
+async function concurrente() {
   const promesas = [];
   for (let i = 1; i <= 3; i++) {
     promesas.push(
@@ -44,9 +54,11 @@ async function Concurrente() {
   });
 }
 
-console.log(`--- Ejecución Secuencial ---`);
-Secuencial()
-.then(() => { 
-  console.log(`--- Ejecución Paralela ---`);
-  Concurrente();
-})
+async function main() {
+  console.log('--- Secuencial ---');
+  await secuencial();
+  console.log('--- Concurrente ---');
+  await concurrente();
+}
+
+main();
