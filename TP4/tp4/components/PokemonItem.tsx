@@ -32,7 +32,7 @@ export const PokemonItem = ({ pokemon, onClick, clickCount }: PokemonItemProps) 
         <img
           src={pokemon.sprites?.front_default}
           alt={pokemon.name}
-          className="w-20 h-20"
+          className="w-30 h-30"
         />
         <div className="flex-1">
           <h3 className="text-xl font-bold capitalize text-gray-800">
@@ -60,7 +60,7 @@ export const PokemonItem = ({ pokemon, onClick, clickCount }: PokemonItemProps) 
             {pokemon.types?.map((type) => (
               <span
                 key={type.slot}
-                className="px-2 py-1 text-xs font-medium bg-blue-100 text-blue-800 rounded"
+                className="px-2 py-1 text-xs font-medium bg-violet-100 text-violet-800 rounded"
               >
                 {type.type.name}
               </span>
@@ -68,7 +68,7 @@ export const PokemonItem = ({ pokemon, onClick, clickCount }: PokemonItemProps) 
           </div>
         </div>
         <div className="text-center">
-          <div className="text-2xl font-bold text-blue-600">
+          <div className="text-2xl font-bold text-violet-600">
             {clickCount}
           </div>
           <div className="text-xs text-gray-500">
